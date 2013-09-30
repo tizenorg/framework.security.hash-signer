@@ -21,6 +21,8 @@ TBD
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/license
+cp LICENSE %{buildroot}/usr/share/license/%{name}
 
 mkdir -p %{buildroot}/opt/usr/share/certs/signer
 cp -arf certificates/* %{buildroot}/opt/usr/share/certs/signer/
@@ -34,3 +36,4 @@ cp -arf macros/* %{buildroot}/etc/rpm/
 /opt/usr/share/certs/signer/*
 /usr/bin/*
 /etc/rpm/*
+/usr/share/license/%{name}
