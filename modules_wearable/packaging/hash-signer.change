@@ -1,0 +1,2 @@
+* Thu Aug 22 2013 Hyunwoo Kim <hwlove.kim@samsung.com>
+- Modify hash-signer.sh interface for supporting multi-package RPM signing.

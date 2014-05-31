@@ -1,0 +1,20 @@
+%undefine %tizen_sign
+%undefine tizen_author_flag
+%undefine tizen_dist_flag
+%tizen_sign_base ./
+%tizen_sign_level public
+%__arch_install_post   /usr/lib/rpm/check-buildroot
+
+%__os_install_post    \
+    /usr/lib/rpm//brp-compress \
+    %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+    /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+    /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump} \
+    /usr/lib/rpm/brp-python-bytecompile \
+    /usr/lib/rpm/brp-python-hardlink \
+    %{!?disable_docs_package:/usr/lib/rpm/tizen/find-docs.sh %{buildroot}} \
+    %{?tizen_author_sign: %define tizen_author_flag -a} \
+    %{?tizen_dist_sign: %define tizen_dist_flag -d} \
+    %{?tizen_sign:/usr/bin/hash-signer.sh %tizen_author_flag %tizen_dist_flag -p %tizen_sign_level  -b $RPM_BUILD_ROOT "%tizen_sign_base"} \
+%{nil}
+
